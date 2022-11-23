@@ -40,6 +40,20 @@ public class ProductController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	/*RQ_1361 ProductController changes start*/
+		@PutMapping("/create")
+	public ResponseEntity<Product1> createProduct(@Valid @RequestBody Product1 product) {
+		try {
+
+			Product1 t = ps.saveOrUpdate(product);
+			return new ResponseEntity<>(t, HttpStatus.CREATED);
+
+		} catch (Exception e) {
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	/*RQ_1361 ProductController changes end*/
 
 	@GetMapping("/readAll")
 	public ResponseEntity<List<Product1>> getAllProducts(@RequestParam(required=false) String name) {
